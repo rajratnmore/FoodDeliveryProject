@@ -1,10 +1,12 @@
 package com.geekster.FoodDeliveryProject.controller;
 
+import com.geekster.FoodDeliveryProject.model.FoodItem;
 import com.geekster.FoodDeliveryProject.model.Orders;
 import com.geekster.FoodDeliveryProject.model.User;
 import com.geekster.FoodDeliveryProject.model.dto.AuthorizedUserDto;
 import com.geekster.FoodDeliveryProject.model.dto.UserAuthenticationDto;
 import com.geekster.FoodDeliveryProject.model.dto.SignInDto;
+import com.geekster.FoodDeliveryProject.service.FoodItemService;
 import com.geekster.FoodDeliveryProject.service.OrdersService;
 import com.geekster.FoodDeliveryProject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class UserController {
 
     @Autowired
     OrdersService ordersService;
+
+    @Autowired
+    FoodItemService foodItemService;
 
     @PostMapping("userSignUp")
     public String userSingUp(@RequestBody User newuser){
@@ -44,6 +49,11 @@ public class UserController {
     @GetMapping("orders/{tokenValue}")
     public List<Orders> getAllOrdersByUser(@PathVariable String tokenValue){
         return userService.getAllOrdersByUser(tokenValue);
+    }
+
+    @GetMapping("foodItems")
+    public List<FoodItem> getAllFoodItems(){
+        return foodItemService.getAllFoodItems();
     }
 
 }
