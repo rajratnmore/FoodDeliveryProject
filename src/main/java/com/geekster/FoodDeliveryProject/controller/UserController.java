@@ -51,7 +51,7 @@ public class UserController {
         return userService.getAllOrdersByUser(tokenValue);
     }
 
-    @GetMapping("foodItems")
+    @GetMapping("allFoodItems")
     public List<FoodItem> getAllFoodItems(){
         return foodItemService.getAllFoodItems();
     }
